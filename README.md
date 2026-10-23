@@ -1,5 +1,10 @@
 # comfyui-moyou-moss-bbox-node1.0
 
+**更新：**
+
+- 2026-10-23：修复 bbox 画布中边界框坐标不跟随宽高等比改变的 bug
+- 2026-10-22：添加 边界框可视化 节点
+
 **在 ComfyUI 的 Node 1.0（经典画布）上画 MOSS 边界框。**
 
 ComfyUI 内置的「创建边界框 / Create Bounding Boxes」是 Node 2.0 节点——它的画布只由 Nodes 2.0 渲染器提供，
@@ -129,6 +134,26 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 
 `moss` 模式可直接接 MOSS-Image Prompt Builder 的 `prompt` 输出（即 `预览任意` 里显示的那段 JSON），
 用来核对提示词的框位是否与出图一致。
+
+#### 完整链路
+
+`加载图像 → 获取图像尺寸 → 布局节点（画框）→ MOSS-Image Layout Prompt → moyou边界框可视化 → 预览图像`，
+布局节点画出来的框会一路变成提示词，再被可视化节点画回原图上核对：
+
+![完整链路：布局节点 → 提示词 → 可视化 → 预览](_shots/vis_workflow.png)
+
+#### 画布尺寸跟着分辨率走
+
+`画布宽度` / `画布高度` 可以直接接「分辨率选择器」这类节点。输出的预览图就是该分辨率，
+框按提示词的绝对像素重新落位（下图 2:3 竖图 → 683×1024）：
+
+![分辨率选择器驱动画布宽高](_shots/vis_resolution.png)
+
+反过来也成立 —— 把已有的 MOSS 结构化提示词接到布局节点的 `边界框输入`（节点会自动读出框坐标），
+再用分辨率选择器给 `宽度` / `高度`，就能在这套提示词上继续改框：
+
+![布局节点读取结构化提示词并接分辨率](_shots/layout_from_prompt.png)
+
 
 ## 数据格式
 

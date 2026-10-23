@@ -1,0 +1,1031 @@
+{
+  "id": "79c40994-7621-4129-b599-1290dd853aa0",
+  "revision": 0,
+  "last_node_id": 29,
+  "last_link_id": 98,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "MoyouMossBoxesLayout",
+      "pos": [
+        0,
+        -170
+      ],
+      "size": [
+        410,
+        850
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "background",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "bboxes",
+          "shape": 7,
+          "type": "BOUNDING_BOX,ARRAY,STRING",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 85
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 89
+        }
+      ],
+      "outputs": [
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "bboxes",
+          "type": "BOUNDING_BOX",
+          "links": []
+        },
+        {
+          "name": "elements",
+          "type": "ARRAY",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MoyouMossBoxesLayout",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "cnr_id": "comfyui-workflow-encrypt",
+        "ver": "1.0.0"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        "[{\"x\":2,\"y\":3,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":386,\"y\":105,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":26,\"y\":659,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":28,\"y\":824,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":31,\"y\":872,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "[{\"x\":2,\"y\":3,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":386,\"y\":105,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":26,\"y\":659,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":28,\"y\":824,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":31,\"y\":872,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "836x1254"
+      ],
+      "widgets_values_named": {
+        "width": 1024,
+        "height": 1024,
+        "layout": "[{\"x\":2,\"y\":3,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":386,\"y\":105,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":26,\"y\":659,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":28,\"y\":824,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":31,\"y\":872,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "last_incoming": "[{\"x\":2,\"y\":3,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":386,\"y\":105,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":26,\"y\":659,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":28,\"y\":824,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":31,\"y\":872,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "last_dims": "836x1254"
+      }
+    },
+    {
+      "id": 3,
+      "type": "MOSSImageLayoutPrompt",
+      "pos": [
+        480,
+        -130
+      ],
+      "size": [
+        420,
+        340
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "element",
+          "type": "ARRAY",
+          "link": 3
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 84
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 88
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "MOSSImageLayoutPrompt",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "width": true,
+            "height": true
+          },
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "这幅肖像作品以浓郁的复古色调与电影质感，定格了东方女性温婉而迷离的瞬间。画面采用低调布光，暖黄色的侧逆光如月光般倾泻，勾勒出模特柔美的侧脸轮廓与修长的颈部线条，同时让米白色的蕾丝旗袍在光影中呈现出细腻的通透感与层次。模特身姿轻盈地坐于深色木质椅上，与蕾丝面料的精致繁复形成虚实对比。她眼神清澈中透着一丝清冷与疏离，红唇在素雅的面容上成为点睛之笔，极具视觉张力。背景中，绘有花卉的屏风与前景的景泰蓝花瓶、一盘色泽饱满的葡萄共同构建了充满故事感的场景。左侧的白花与暗部阴影相互交织，衬托出主体的明亮与高贵。整幅画面构图严谨，通过前景的静物与背景的陈设，营造出一种宿命感与旧时光的静谧氛围，将传统韵味与现代审美完美融合。\n\n",
+        1024,
+        1024,
+        "4"
+      ],
+      "widgets_values_named": {
+        "prompt": "这幅肖像作品以浓郁的复古色调与电影质感，定格了东方女性温婉而迷离的瞬间。画面采用低调布光，暖黄色的侧逆光如月光般倾泻，勾勒出模特柔美的侧脸轮廓与修长的颈部线条，同时让米白色的蕾丝旗袍在光影中呈现出细腻的通透感与层次。模特身姿轻盈地坐于深色木质椅上，与蕾丝面料的精致繁复形成虚实对比。她眼神清澈中透着一丝清冷与疏离，红唇在素雅的面容上成为点睛之笔，极具视觉张力。背景中，绘有花卉的屏风与前景的景泰蓝花瓶、一盘色泽饱满的葡萄共同构建了充满故事感的场景。左侧的白花与暗部阴影相互交织，衬托出主体的明亮与高贵。整幅画面构图严谨，通过前景的静物与背景的陈设，营造出一种宿命感与旧时光的静谧氛围，将传统韵味与现代审美完美融合。\n\n",
+        "width": 1024,
+        "height": 1024,
+        "character_boxes": "4"
+      }
+    },
+    {
+      "id": 4,
+      "type": "PreviewAny",
+      "pos": [
+        950,
+        -120
+      ],
+      "size": [
+        410,
+        710
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            92
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "PreviewAny",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 7,
+      "type": "PreviewImage",
+      "pos": [
+        1960,
+        -130
+      ],
+      "size": [
+        580,
+        650
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 12,
+      "type": "MoyouMossBoxesVisNode10",
+      "pos": [
+        1410,
+        -140
+      ],
+      "size": [
+        480,
+        580
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 81
+        },
+        {
+          "name": "elements",
+          "shape": 7,
+          "type": "BOUNDING_BOX,ARRAY,STRING",
+          "link": 92
+        },
+        {
+          "name": "canvas_width",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "canvas_width"
+          },
+          "link": 83
+        },
+        {
+          "name": "canvas_height",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "canvas_height"
+          },
+          "link": 87
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MoyouMossBoxesVisNode10",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "moss",
+        3,
+        0,
+        0,
+        ""
+      ],
+      "widgets_values_named": {
+        "mode": "moss",
+        "line_width": 3,
+        "canvas_width": 0,
+        "canvas_height": 0,
+        "bbox_text": ""
+      }
+    },
+    {
+      "id": 13,
+      "type": "GetImageSize",
+      "pos": [
+        -200,
+        -80
+      ],
+      "size": [
+        140,
+        130
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "图像",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 54
+        }
+      ],
+      "outputs": [
+        {
+          "label": "宽度",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            83,
+            84,
+            85
+          ]
+        },
+        {
+          "label": "高度",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            87,
+            88,
+            89
+          ]
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "GetImageSize",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "type": "LoadImage",
+      "pos": [
+        -520,
+        40
+      ],
+      "size": [
+        270,
+        320
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            53
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "moss_image_bboxes_00025_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "moss_image_bboxes_00025_.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 17,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        -520,
+        -120
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 53
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            54,
+            81
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "ImageScaleToTotalPixels",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        1,
+        1
+      ],
+      "widgets_values_named": {
+        "upscale_method": "lanczos",
+        "megapixels": 1,
+        "resolution_steps": 1
+      }
+    },
+    {
+      "id": 18,
+      "type": "MoyouMossBoxesVisNode10",
+      "pos": [
+        -60,
+        980
+      ],
+      "size": [
+        480,
+        580
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "elements",
+          "shape": 7,
+          "type": "BOUNDING_BOX,ARRAY,STRING",
+          "link": null
+        },
+        {
+          "name": "canvas_width",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "canvas_width"
+          },
+          "link": 90
+        },
+        {
+          "name": "canvas_height",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "canvas_height"
+          },
+          "link": 91
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            57
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MoyouMossBoxesVisNode10",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "moss",
+        3,
+        0,
+        0,
+        "{\"summary\":{\"caption\":\"这幅肖像作品以浓郁的复古色调与电影质感，定格了东方女性温婉而迷离的瞬间。画面采用低调布光，暖黄色的侧逆光如月光般倾泻，勾勒出模特柔美的侧脸轮廓与修长的颈部线条，同时让米白色的蕾丝旗袍在光影中呈现出细腻的通透感与层次。模特身姿轻盈地坐于深色木质椅上，与蕾丝面料的精致繁复形成虚实对比。她眼神清澈中透着一丝清冷与疏离，红唇在素雅的面容上成为点睛之笔，极具视觉张力。背景中，绘有花卉的屏风与前景的景泰蓝花瓶、一盘色泽饱满的葡萄共同构建了充满故事感的场景。左侧的白花与暗部阴影相互交织，衬托出主体的明亮与高贵。整幅画面构图严谨，通过前景的静物与背景的陈设，营造出一种宿命感与旧时光的静谧氛围，将传统韵味与现代审美完美融合。\"},\"items\":[{\"label\":\"text\",\"caption\":\"大写艺术字绿色\",\"text\":\"moss\",\"bbox\":[-624,-416,-371,416]},{\"label\":\"object\",\"caption\":\"身着白色蕾丝旗袍的女性\",\"bbox\":[-522,-32,401,416]},{\"label\":\"text\",\"caption\":\"白色隶书书法艺术字大字标题\",\"text\":\"半生缘\",\"bbox\":[32,-392,194,-65]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"摄影：comfyui\",\"bbox\":[197,-390,245,-107]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"出境：moyou\",\"bbox\":[245,-387,294,-102]}],\"bbox_coord_space\":\"abs_centralized\",\"bbox_format\":\"yxyx\"}"
+      ],
+      "widgets_values_named": {
+        "mode": "moss",
+        "line_width": 3,
+        "canvas_width": 0,
+        "canvas_height": 0,
+        "bbox_text": "{\"summary\":{\"caption\":\"这幅肖像作品以浓郁的复古色调与电影质感，定格了东方女性温婉而迷离的瞬间。画面采用低调布光，暖黄色的侧逆光如月光般倾泻，勾勒出模特柔美的侧脸轮廓与修长的颈部线条，同时让米白色的蕾丝旗袍在光影中呈现出细腻的通透感与层次。模特身姿轻盈地坐于深色木质椅上，与蕾丝面料的精致繁复形成虚实对比。她眼神清澈中透着一丝清冷与疏离，红唇在素雅的面容上成为点睛之笔，极具视觉张力。背景中，绘有花卉的屏风与前景的景泰蓝花瓶、一盘色泽饱满的葡萄共同构建了充满故事感的场景。左侧的白花与暗部阴影相互交织，衬托出主体的明亮与高贵。整幅画面构图严谨，通过前景的静物与背景的陈设，营造出一种宿命感与旧时光的静谧氛围，将传统韵味与现代审美完美融合。\"},\"items\":[{\"label\":\"text\",\"caption\":\"大写艺术字绿色\",\"text\":\"moss\",\"bbox\":[-624,-416,-371,416]},{\"label\":\"object\",\"caption\":\"身着白色蕾丝旗袍的女性\",\"bbox\":[-522,-32,401,416]},{\"label\":\"text\",\"caption\":\"白色隶书书法艺术字大字标题\",\"text\":\"半生缘\",\"bbox\":[32,-392,194,-65]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"摄影：comfyui\",\"bbox\":[197,-390,245,-107]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"出境：moyou\",\"bbox\":[245,-387,294,-102]}],\"bbox_coord_space\":\"abs_centralized\",\"bbox_format\":\"yxyx\"}"
+      }
+    },
+    {
+      "id": 19,
+      "type": "PreviewImage",
+      "pos": [
+        460,
+        980
+      ],
+      "size": [
+        660,
+        470
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 57
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 20,
+      "type": "ResolutionSelector",
+      "pos": [
+        -390,
+        1050
+      ],
+      "size": [
+        280,
+        190
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "showAdvanced": true,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            90
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            91
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "ResolutionSelector",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "2:3 (Portrait Photo)",
+        1,
+        16
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "2:3 (Portrait Photo)",
+        "megapixels": 1,
+        "multiple": 16
+      }
+    },
+    {
+      "id": 24,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        1510,
+        830
+      ],
+      "size": [
+        500,
+        260
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            93
+          ]
+        }
+      ],
+      "title": "输入结构提示词，画布节点会自动读取边界框坐标",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.26.0",
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "ue_properties": {
+          "version": "7.8",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "{\"summary\":{\"caption\":\"这幅肖像作品以浓郁的复古色调与电影质感，定格了东方女性温婉而迷离的瞬间。画面采用低调布光，暖黄色的侧逆光如月光般倾泻，勾勒出模特柔美的侧脸轮廓与修长的颈部线条，同时让米白色的蕾丝旗袍在光影中呈现出细腻的通透感与层次。模特身姿轻盈地坐于深色木质椅上，与蕾丝面料的精致繁复形成虚实对比。她眼神清澈中透着一丝清冷与疏离，红唇在素雅的面容上成为点睛之笔，极具视觉张力。背景中，绘有花卉的屏风与前景的景泰蓝花瓶、一盘色泽饱满的葡萄共同构建了充满故事感的场景。左侧的白花与暗部阴影相互交织，衬托出主体的明亮与高贵。整幅画面构图严谨，通过前景的静物与背景的陈设，营造出一种宿命感与旧时光的静谧氛围，将传统韵味与现代审美完美融合。\"},\"items\":[{\"label\":\"text\",\"caption\":\"大写艺术字绿色\",\"text\":\"moss\",\"bbox\":[-624,-416,-371,416]},{\"label\":\"object\",\"caption\":\"身着白色蕾丝旗袍的女性\",\"bbox\":[-522,-32,401,416]},{\"label\":\"text\",\"caption\":\"白色隶书书法艺术字大字标题\",\"text\":\"半生缘\",\"bbox\":[32,-392,194,-65]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"摄影：comfyui\",\"bbox\":[197,-390,245,-107]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"出境：moyou\",\"bbox\":[245,-387,294,-102]}],\"bbox_coord_space\":\"abs_centralized\",\"bbox_format\":\"yxyx\"}"
+      ],
+      "widgets_values_named": {
+        "value": "{\"summary\":{\"caption\":\"这幅肖像作品以浓郁的复古色调与电影质感，定格了东方女性温婉而迷离的瞬间。画面采用低调布光，暖黄色的侧逆光如月光般倾泻，勾勒出模特柔美的侧脸轮廓与修长的颈部线条，同时让米白色的蕾丝旗袍在光影中呈现出细腻的通透感与层次。模特身姿轻盈地坐于深色木质椅上，与蕾丝面料的精致繁复形成虚实对比。她眼神清澈中透着一丝清冷与疏离，红唇在素雅的面容上成为点睛之笔，极具视觉张力。背景中，绘有花卉的屏风与前景的景泰蓝花瓶、一盘色泽饱满的葡萄共同构建了充满故事感的场景。左侧的白花与暗部阴影相互交织，衬托出主体的明亮与高贵。整幅画面构图严谨，通过前景的静物与背景的陈设，营造出一种宿命感与旧时光的静谧氛围，将传统韵味与现代审美完美融合。\"},\"items\":[{\"label\":\"text\",\"caption\":\"大写艺术字绿色\",\"text\":\"moss\",\"bbox\":[-624,-416,-371,416]},{\"label\":\"object\",\"caption\":\"身着白色蕾丝旗袍的女性\",\"bbox\":[-522,-32,401,416]},{\"label\":\"text\",\"caption\":\"白色隶书书法艺术字大字标题\",\"text\":\"半生缘\",\"bbox\":[32,-392,194,-65]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"摄影：comfyui\",\"bbox\":[197,-390,245,-107]},{\"label\":\"text\",\"caption\":\"白色小字\",\"text\":\"出境：moyou\",\"bbox\":[245,-387,294,-102]}],\"bbox_coord_space\":\"abs_centralized\",\"bbox_format\":\"yxyx\"}"
+      },
+      "shape": 1
+    },
+    {
+      "id": 27,
+      "type": "MoyouMossBoxesLayout",
+      "pos": [
+        2050,
+        810
+      ],
+      "size": [
+        430,
+        850
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "background",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "bboxes",
+          "shape": 7,
+          "type": "BOUNDING_BOX,ARRAY,STRING",
+          "link": 93
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 96
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 97
+        }
+      ],
+      "outputs": [
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "bboxes",
+          "type": "BOUNDING_BOX",
+          "links": []
+        },
+        {
+          "name": "elements",
+          "type": "ARRAY",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MoyouMossBoxesLayout",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "cnr_id": "comfyui-workflow-encrypt",
+        "ver": "1.0.0"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        "[{\"x\":0,\"y\":0,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":384,\"y\":102,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":24,\"y\":656,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":26,\"y\":821,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":29,\"y\":869,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "[{\"x\":0,\"y\":0,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":384,\"y\":102,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":24,\"y\":656,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":26,\"y\":821,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":29,\"y\":869,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "832x1248"
+      ],
+      "widgets_values_named": {
+        "width": 1024,
+        "height": 1024,
+        "layout": "[{\"x\":0,\"y\":0,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":384,\"y\":102,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":24,\"y\":656,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":26,\"y\":821,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":29,\"y\":869,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "last_incoming": "[{\"x\":0,\"y\":0,\"width\":832,\"height\":253,\"metadata\":{\"type\":\"text\",\"text\":\"moss\",\"desc\":\"大写艺术字绿色\",\"palette\":[]}},{\"x\":384,\"y\":102,\"width\":448,\"height\":923,\"metadata\":{\"type\":\"obj\",\"text\":\"\",\"desc\":\"身着白色蕾丝旗袍的女性\",\"palette\":[]}},{\"x\":24,\"y\":656,\"width\":327,\"height\":162,\"metadata\":{\"type\":\"text\",\"text\":\"半生缘\",\"desc\":\"白色隶书书法艺术字大字标题\",\"palette\":[]}},{\"x\":26,\"y\":821,\"width\":283,\"height\":48,\"metadata\":{\"type\":\"text\",\"text\":\"摄影：comfyui\",\"desc\":\"白色小字\",\"palette\":[]}},{\"x\":29,\"y\":869,\"width\":285,\"height\":49,\"metadata\":{\"type\":\"text\",\"text\":\"出境：moyou\",\"desc\":\"白色小字\",\"palette\":[]}}]",
+        "last_dims": "832x1248"
+      }
+    },
+    {
+      "id": 28,
+      "type": "ResolutionSelector",
+      "pos": [
+        1710,
+        1170
+      ],
+      "size": [
+        280,
+        190
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "showAdvanced": true,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            96
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            97
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "Node name for S&R": "ResolutionSelector",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "2:3 (Portrait Photo)",
+        1,
+        16
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "2:3 (Portrait Photo)",
+        "megapixels": 1,
+        "multiple": 16
+      }
+    }
+  ],
+  "links": [
+    [
+      3,
+      2,
+      2,
+      3,
+      0,
+      "ARRAY"
+    ],
+    [
+      6,
+      3,
+      0,
+      4,
+      0,
+      "STRING"
+    ],
+    [
+      20,
+      12,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      53,
+      14,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      54,
+      17,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      57,
+      18,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      81,
+      17,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      83,
+      13,
+      0,
+      12,
+      2,
+      "INT"
+    ],
+    [
+      84,
+      13,
+      0,
+      3,
+      1,
+      "INT"
+    ],
+    [
+      85,
+      13,
+      0,
+      2,
+      2,
+      "INT"
+    ],
+    [
+      87,
+      13,
+      1,
+      12,
+      3,
+      "INT"
+    ],
+    [
+      88,
+      13,
+      1,
+      3,
+      2,
+      "INT"
+    ],
+    [
+      89,
+      13,
+      1,
+      2,
+      3,
+      "INT"
+    ],
+    [
+      90,
+      20,
+      0,
+      18,
+      2,
+      "INT"
+    ],
+    [
+      91,
+      20,
+      1,
+      18,
+      3,
+      "INT"
+    ],
+    [
+      92,
+      4,
+      0,
+      12,
+      1,
+      "STRING"
+    ],
+    [
+      93,
+      24,
+      0,
+      27,
+      1,
+      "STRING"
+    ],
+    [
+      96,
+      28,
+      0,
+      27,
+      2,
+      "INT"
+    ],
+    [
+      97,
+      28,
+      1,
+      27,
+      3,
+      "INT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "ds": {
+      "scale": 0.6122296398352015,
+      "offset": [
+        -590.787549022313,
+        -175.29427504529042
+      ]
+    },
+    "frontendVersion": "1.57.1",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4,
+  "seed_widgets": {}
+}
