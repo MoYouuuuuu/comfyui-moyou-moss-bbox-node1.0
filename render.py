@@ -23,33 +23,33 @@ def _native():
         return None
 
 
-def render(boxes, width, height, background=None):
-    """boxes (canonical pixel layout) -> float32 IMAGE tensor (1, H, W, 3)."""
-    native = _native()
-    if native is not None:
-        def to_fraction(item):
-            meta = item["metadata"]
-            return {
-                "x": item["x"] / (width or 1),
-                "y": item["y"] / (height or 1),
-                "w": item["width"] / (width or 1),
-                "h": item["height"] / (height or 1),
-                "type": meta["type"],
-                "text": meta["text"],
-                "desc": meta["desc"],
-                "palette": meta["palette"],
-            }
-
-        regions = [to_fraction(item) for item in boxes]
-        return native.render_preview(regions, width, height, _background(background))
-    return _render_portable(boxes, width, height, background)
+_FONT_CANDIDATES = (
+    "msyh.ttc", "msyhbd.ttc", "simhei.ttf", "simsun.ttc", "simkai.ttf",
+    "PingFang.ttc", "Heiti SC.ttc", "NotoSansCJK-Regular.ttc", "NotoSansSC-Regular.otf",
+    "DejaVuSans.ttf",
+)
+_FONT_CACHE = {}
 
 
 def _font(size):
-    try:
-        return ImageFont.load_default(size)
-    except Exception:
-        return ImageFont.load_default()
+    """A font that can draw the captions: the built-in default has no CJK glyphs."""
+    key = int(size)
+    if key in _FONT_CACHE:
+        return _FONT_CACHE[key]
+    font = None
+    for name in _FONT_CANDIDATES:
+        try:
+            font = ImageFont.truetype(name, key)
+            break
+        except OSError:
+            continue
+    if font is None:
+        try:
+            font = ImageFont.load_default(key)
+        except Exception:
+            font = ImageFont.load_default()
+    _FONT_CACHE[key] = font
+    return font
 
 
 def hex_to_rgb(value):
@@ -92,7 +92,40 @@ def _background(image):
     return Image.fromarray(arr)
 
 
-def _render_portable(boxes, width, height, background):
+def render(boxes, width, height, background=None, line_width=2):
+    """boxes (canonical pixel layout) -> float32 IMAGE tensor (1, H, W, 3)."""
+    native = _native()
+    # The built-in renderer hard-codes a 2px outline, so a custom width uses the
+    # local copy (same drawing rules, same fonts).
+    if native is not None and line_width == 2:
+        def to_fraction(item):
+            meta = item["metadata"]
+            return {
+                "x": item["x"] / (width or 1),
+                "y": item["y"] / (height or 1),
+                "w": item["width"] / (width or 1),
+                "h": item["height"] / (height or 1),
+                "type": meta["type"],
+                "text": meta["text"],
+                "desc": meta["desc"],
+                "palette": meta["palette"],
+            }
+
+        regions = [to_fraction(item) for item in boxes]
+        # The built-in renderer uses PIL's default font, which has no CJK glyphs;
+        # point it at ours for the duration of the call.
+        original = getattr(native, "_font", None)
+        if original is not None:
+            native._font = _font
+        try:
+            return native.render_preview(regions, width, height, _background(background))
+        finally:
+            if original is not None:
+                native._font = original
+    return _render_portable(boxes, width, height, background, line_width)
+
+
+def _render_portable(boxes, width, height, background, line_width):
     bg = _background(background)
     if bg is not None:
         iw, ih = bg.size
@@ -126,7 +159,7 @@ def _render_portable(boxes, width, height, background):
         if y2 < y1:
             y1, y2 = y2, y1
 
-        draw.rectangle([x1, y1, x2, y2], outline=rgb + (255,), width=2)
+        draw.rectangle([x1, y1, x2, y2], outline=rgb + (255,), width=line_width)
 
         swatches = palette[:5]
         if swatches and (x2 - x1) > 2:

@@ -717,6 +717,28 @@ export function createBoxEditor(opts) {
             pull();
             draw();
         },
+        /**
+         * Scale the stored pixel values into a new canvas size, so the boxes keep the
+         * same place and size relative to the canvas. `from` is the size the boxes are
+         * currently written in, `to` the new canvas size.
+         */
+        rescale(from, to) {
+            const [ow, oh] = (from || []).map(Number);
+            const [nw, nh] = (to || []).map(Number);
+            if (!(ow > 0 && oh > 0 && nw > 0 && nh > 0)) return false;
+            if (ow === nw && oh === nh) return false;
+            pull();
+            if (!boxes.length) return false;
+            const sx = nw / ow, sy = nh / oh;
+            boxes = boxes.map((b) => ({
+                x: Math.round(b.x * sx), y: Math.round(b.y * sy),
+                width: Math.max(1, Math.round(b.width * sx)),
+                height: Math.max(1, Math.round(b.height * sy)),
+                metadata: b.metadata,
+            }));
+            commit();
+            return true;
+        },
         destroy() {
             ro.disconnect();
             window.removeEventListener("blur", onBlur);

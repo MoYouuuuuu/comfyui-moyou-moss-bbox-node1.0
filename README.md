@@ -18,6 +18,8 @@ ComfyUI 内置的「创建边界框 / Create Bounding Boxes」是 Node 2.0 节�
 - **完整画布编辑器**：拖拽新建 / 移动 / 8 手柄缩放，框内实时显示文本与描述
 - **元数据编辑**：类型（物体 / 文本）、文本、描述、最多 5 个调色板颜色
 - **实时预览**：`preview` 输出画布渲染图（压暗背景 + 编号 + 描述文字），可直接接「预览图像」
+- **宽高可连线**：`宽度` / `高度` 可以改成输入，接 `Primitive` 或尺寸节点；接上后画布与 `元素`
+  输出都按新尺寸重新换算，构图不跑
 - **上游初始化**：`bboxes` 输入可接像素框、`bbox_2d`、`elements` 或 JSON，上游变化时画布自动同步
 - **全中文界面**：输入、输出、面板均为中文，内部字段名保持不变，旧工作流兼容
 - **零额外依赖**：只用 ComfyUI 自带的 torch / PIL / numpy
@@ -48,7 +50,7 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 ## 使用
 
 1. 双击画布空白处，搜索 **moyou** 或 `Node 1.0`，添加 **moyou bbox moss-image layout (Node 1.0)**（分类 `moyou`）
-2. 设置 `宽度` / `高度`（默认 1024×1024）
+2. 设置 `宽度` / `高度`（默认 1024×1024），或把这两个输入拖出连线接到尺寸来源
 3. 在画布上拖拽画框；选中框后，在下方编辑类型、文本、描述、调色板
 4. 把 `元素` 接到 MOSS 图像节点的元素输入，或把 `预览图` 接到「预览图像 / 保存图像」
 
@@ -57,6 +59,10 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 （`MOSSImageLayoutPrompt` + 本插件 + Flux sampling），可直接拖入 ComfyUI 打开。
 
 ### 操作速查
+
+画布就是坐标系：框存的是像素值。改 `宽度` / `高度`（手填，或把这两个输入拖出连线送值）时，
+存着的框会**按 new/old 等比缩放**，所以画布上看到的构图不变，`元素` 输出里的归一化坐标
+也一个数都不变 —— 换个尺寸出图，构图别跑。
 
 | 操作 | 说明 |
 | --- | --- |
@@ -74,11 +80,11 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 
 ### moyou bbox moss-image layout (Node 1.0)
 
-节点 ID：`MoyouMossBoxesNode10` / `MoyouMossBoxesLayout`（同一节点的两个别名，便于搜索）
+节点 ID：`MoyouMossBoxesLayout`
 
 | 输入 | 类型 | 说明 |
 | --- | --- | --- |
-| `宽度` / `高度` | INT | 画布与输出图尺寸，默认 1024×1024 |
+| `宽度` / `高度` | INT | 画布与输出图尺寸，默认 1024×1024；可改成输入并连线（接 `Empty Latent Image` 的宽高最省事） |
 | `背景图`（可选） | IMAGE | 画布与预览的背景图 |
 | `边界框输入`（可选） | BOUNDING_BOX / ARRAY / STRING | 初始化画布；上游值变化一次则重置画布，不变时画布编辑优先 |
 
@@ -88,11 +94,41 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 | `边界框` | BOUNDING_BOX | 像素框帧 `[[{x, y, width, height}, ...]]` |
 | `元素` | ARRAY | MOSS elements：`{"type", "bbox", "text", "desc", "color_palette"}` |
 
-### 边界框可视化
+### moyou边界框可视化
 
 节点 ID：`MoyouMossBoxesVisNode10`
 
-把 `elements` / `bbox_2d` / 像素框 JSON 画回一张图片上，用于快速核对结果。
+把框画回一张图上做核对。`模式` 决定如何解读输入：
+
+| 模式 | 读什么 | 坐标 |
+| --- | --- | --- |
+| `moss` | MOSS-Image 结构化提示词（`summary` + `items`） | 绝对像素，**原点在画布中心** |
+| `yxyx` | elements / `bbox_2d` 列表 | 0–1000 归一化，`[y1, x1, y2, x2]` |
+| `xyxy` | 同上 | 0–1000 归一化，`[x1, y1, x2, y2]` |
+
+| 输入 | 类型 | 说明 |
+| --- | --- | --- |
+| `图像`（可选） | IMAGE | 底图。**不接也能跑**：直接在灰底图上画框，用来单独核对框位 |
+| `模式` | 下拉 | 见下表 |
+| `边界框输入`（可选） | BOUNDING_BOX / ARRAY / STRING | 优先于文本框；接编辑器或提示词节点的输出 |
+| `画布宽度` / `画布高度` | INT | 见下 |
+| `边界框文本` | 多行文本 | 直接粘贴 JSON（`moss` / elements / `bbox_2d` 都能贴） |
+| `线宽` | INT | 框线宽度（像素） |
+
+`画布宽度` / `画布高度` 只对 `moss` 模式生效：提示词里的 bbox 是**提示词制作时那块画布**的绝对像素，
+所以这里要填提示词是按什么尺寸做的（默认 `0` = 用输入图自身的尺寸，没有图像时为 1024）。两者不一致时会自动等比缩放到图像上。
+
+不接 `图像` 时输出 `画布宽度` × `画布高度` 的灰底图（同样按最长边 1024 缩放），框、编号、描述照常绘制，
+所以可以把它当成一个纯「提示词框位检查器」单独挂在画布上看结果。
+
+![moss 模式：读取结构化提示词并标注](_shots/moss_mode.png)
+
+节点界面（模式下拉框旁会显示当前模式的中文含义）：
+
+![moyou边界框可视化节点](_shots/vis_zh.png)
+
+`moss` 模式可直接接 MOSS-Image Prompt Builder 的 `prompt` 输出（即 `预览任意` 里显示的那段 JSON），
+用来核对提示词的框位是否与出图一致。
 
 ## 数据格式
 
@@ -111,6 +147,39 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 { "type": "text", "bbox": [55, 0, 380, 1000], "text": "MOSS", "desc": "top banner" }
 ```
 
+### MOSS 结构化提示词
+
+MOSS-Image 的布局提示词是另一种形状（也是本插件 `moss` 模式读取的格式）：
+
+```json
+{
+  "summary": { "caption": "" },
+  "items": [
+    { "label": "text",   "caption": "大写艺术字绿色", "text": "moss",
+      "bbox": [-624, -416, -371, 416] },
+    { "label": "object", "caption": "身着白色蕾丝旗袍的女性",
+      "bbox": [-522, -32, 401, 416] }
+  ],
+  "bbox_coord_space": "abs_centralized",
+  "bbox_format": "yxyx"
+}
+```
+
+| 字段 | 含义 |
+| --- | --- |
+| `bbox_coord_space: abs_centralized` | 绝对像素，**原点在画布中心**（`abs_topleft` 则为左上角） |
+| `bbox_format: yxyx` | 轴序 `[y1, x1, y2, x2]`（`xyxy` 为 `[x1, y1, x2, y2]`） |
+| `label` | `object` / `character` / `text` |
+| `caption` | 该框的内容描述 |
+| `text` | `label: text` 时要渲染的字 |
+
+本插件的映射：`caption` → `描述`，`text` → `文本`，`label: text` → 类型「文本」，其余 → 「物体」。
+提示词里的 `summary`、`canvas`、每项的 `tags` 会原样保留，未被改动的提示词可无损回写。
+
+> 中心坐标需要画布尺寸才能换算，而提示词本身不记录该尺寸——所以 `moss` 模式必须知道
+> 提示词是按什么尺寸制作的（见上方的 `画布宽度`/`画布高度`）。MOSS-Image Prompt Builder 里
+> `width`/`height` 填多少，这里就填多少。
+
 > ⚠️ 与 `MoyouBBoxVis` 的 `bbox_2d`（`[x1, y1, x2, y2]`，0–1000）是两种不同的坐标排列：
 > `bbox_2d` 的第三、四值是右下角坐标。直接喂给 `边界框输入` 时会按画布尺寸换算成像素。
 
@@ -125,7 +194,11 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 
 - 每个框最多 5 个调色板颜色（与内置节点一致）
 - 画布最多按 0–1000 网格交互，超长边（>16384px）的框会按比例取整
-- `layout` / `last_incoming` 两个内部 widget 已隐藏，用于保存画布状态，请勿手动修改
+- `layout` / `last_incoming` / `last_dims` 三个内部 widget 已隐藏，用于保存画布状态，请勿手动修改
+- 连线驱动的 `宽度` / `高度`：前端拿不到连线对端的数值，只有对端是常量 INT（`Primitive`、
+  `Int Literal` 之类，数值存在它唯一的数字 widget 里）时画布才会即时跟随。其它来源（「图像尺寸」、
+  「分辨率选择器」这类运行时计算的节点）由**后端在运行时换算**：它用 `last_dims` 记住的旧画布和新
+  尺寸把框等比缩一次，所以**这一次运行的 `元素` 就已经是对的**，同时把新尺寸回写给画布。
 
 ## 致谢
 
