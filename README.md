@@ -126,12 +126,6 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 不接 `图像` 时输出 `画布宽度` × `画布高度` 的灰底图（同样按最长边 1024 缩放），框、编号、描述照常绘制，
 所以可以把它当成一个纯「提示词框位检查器」单独挂在画布上看结果。
 
-![moss 模式：读取结构化提示词并标注](_shots/moss_mode.png)
-
-节点界面（模式下拉框旁会显示当前模式的中文含义）：
-
-![moyou边界框可视化节点](_shots/vis_zh.png)
-
 `moss` 模式可直接接 MOSS-Image Prompt Builder 的 `prompt` 输出（即 `预览任意` 里显示的那段 JSON），
 用来核对提示词的框位是否与出图一致。
 
@@ -153,7 +147,6 @@ git clone https://github.com/MoYouuuuuu/comfyui-moyou-moss-bbox-node1.0.git
 再用分辨率选择器给 `宽度` / `高度`，就能在这套提示词上继续改框：
 
 ![布局节点读取结构化提示词并接分辨率](_shots/layout_from_prompt.png)
-
 
 ## 数据格式
 
